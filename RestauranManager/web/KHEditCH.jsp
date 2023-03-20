@@ -170,18 +170,18 @@
                                         %>
                                         <h3 class="mb-5">Đặt bàn</h3>
                                         <div class="form-outline mb-4">
-                                            <h6 class="m-0 font-weight-bold text-primary">Mã bàn</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Mã Bàn</h6>
                                             <select name="idPhong" class="form-control form-control-lg" readonly>
                                                 <option value="<%=  dtoApartment.getIdPhong()%>"><%=  dtoApartment.getIdPhong()%></option>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">id Người Đặt</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Người đặt</h6>
                                         <div class="form-outline mb-4">
                                             <select name="idKH" class="form-control form-control-lg"  id="gender">
-                                                <option>${sessionScope.cus.getIdKH()}</option>
+                                                <option value="${sessionScope.cus.getIdKH()}">${sessionScope.cus.getTenKH()}</option>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giờ Đặt</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Giờ đặt</h6>
                                         <div class="form-outline mb-4">
                                             <select name="ThangThue" class="form-control form-control-lg"  id="Thangthue">
                                                 <%
@@ -194,7 +194,7 @@
                                                 <option value="0">Trống</option>
                                                 <%
                                                     }
-                                                    for (int i = 1; i <= 12; i++) {
+                                                    for (int i = 8; i <= 22; i++) {
                                                         if (i == dtoApartment.getThangThue()) {
                                                 %>
                                                 <option value="<%= i%>" selected><%= i%></option>
@@ -208,9 +208,9 @@
                                                 %>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giá </h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Giá</h6>
                                         <div class="form-outline mb-4">
-                                            <input readonly name="GiaThue" type="text" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Giá Thuê" value="<%= dtoApartment.getGiaThue()%>" required pattern="^[1-9]+[0-9]*$" title="Giá Tiền phải là số dương"/>
+                                            <input name="GiaThue" type="text" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Giá Thuê" value="<%= dtoApartment.getGiaThue()%>" required pattern="^[1-9]+[0-9]*$" title="Giá Tiền phải là số dương"/>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Trạng Thái</h6>
                                         <div class="form-outline mb-4">
@@ -218,31 +218,40 @@
                                                 <%
                                                     if (dtoApartment.getTrangThai() == 1) {
                                                 %>
-                                                <option value="1" selected>Được Thuê</option>
-                                                
+                                                <option value="1" selected>Được đặt</option>
+                                                <option value="0">Trống</option>
+                                                <%
+                                                } else {
+                                                %>
+                                                <option value="1">Được đặt</option>
+                                                <option value="0">Trống</option>
+
+                                                <%
+                                                    }
+                                                %>
                                             </select>
                                         </div>
-
-                                        <%
+                                         <%
                                             }
                                         %>
+
                                         <button class="btn btn-primary btn-lg btn-block" type="submit" name="type" value="ApplyEdit">Đặt bàn</button>
                                         <button class="btn btn-primary btn-lg btn-block" type="submit" name="type" value="Cancel">Huỷ</button>
                                         <%
                                         } else {
                                         %>
                                         <h3 class="mb-5">Thêm Bàn</h3>
-                                        <h6 class="m-0 font-weight-bold text-primary">Người Đặt</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Người đặt</h6>
                                         <div class="form-outline mb-4">
                                             <select name="idKH" class="form-control form-control-lg"  id="gender">
-                                                <option value="${sessionScope.cus.getIdKh()}">${sessionScope.cus.getTenKH()}</option>
+                                                <option value="${sessionScope.cus.getIdKH()}">${sessionScope.cus.getTenKH()}</option>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giờ Đặt</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Giờ đặt</h6>
                                         <div class="form-outline mb-4">
                                             <select name="ThangThue" class="form-control form-control-lg"  id="Thangthue">
                                                 <%
-                                                    for (int i = 0; i <= 12; i++) {
+                                                    for (int i = 8; i <= 22; i++) {
                                                         if (i == 0) {
                                                 %>
                                                 <option value="0">Trống</option>
@@ -256,16 +265,15 @@
                                                 %>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giá </h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Giá</h6>
                                         <div class="form-outline mb-4">
                                             <input name="GiaThue" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Giá Thuê" value="0" required pattern="^[1-9]\d*$" title="Giá Tiền phải là số dương"/>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Trạng Thái</h6>
                                         <div class="form-outline mb-4">
                                             <select name="trangThai" class="form-control form-control-lg"  id="gender">
-                                                <option value="1">Được Đặt</option>
+                                                <option value="1">Đặt bàn</option>
                                                 <option value="2">Trống</option>
-                                                <option value="3">Đang dọn dẹp</option>
                                             </select>
                                         </div>
                                         <button class="btn btn-primary btn-lg btn-block" type="submit" name="type" value="add">Thêm</button>

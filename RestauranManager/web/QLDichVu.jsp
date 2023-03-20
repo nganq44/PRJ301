@@ -64,7 +64,7 @@
                             <a class="collapse-item" href="EditKH.jsp">Khách Hàng</a>
                             <a class="collapse-item" href="EditDV.jsp">Dịch Vụ</a>
                             <a class="collapse-item" href="EditCH.jsp">Căn hộ</a>
-                            <a class="collapse-item" href="EditHÐ.jsp">Hoá Đơn</a>
+                            <a class="collapse-item" href="EditHD.jsp">Hoá Đơn</a>
                         </div>
                     </div>
                 </li>

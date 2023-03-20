@@ -73,7 +73,7 @@
                             <a class="collapse-item" href="EditKH.jsp">Khách Hàng</a>
                             <a class="collapse-item" href="EditDV.jsp">Dịch Vụ</a>
                             <a class="collapse-item" href="EditCH.jsp">Bàn</a>
-                            <a class="collapse-item" href="EditHĐ.jsp">Hoá Đơn</a>
+                            <a class="collapse-item" href="EditHD.jsp">Hoá Đơn</a>
                         </div>
                     </div>
                 </li>
@@ -227,7 +227,7 @@
                                                 <option value="0">Trống</option>
                                                 <%
                                                     }
-                                                    for (int i = 1; i <= 12; i++) {
+                                                    for (int i = 8; i <= 22; i++) {
                                                         if (i == dtoApartment.getThangThue()) {
                                                 %>
                                                 <option value="<%= i%>" selected><%= i%></option>
@@ -299,7 +299,7 @@
                                         <div class="form-outline mb-4">
                                             <select name="ThangThue" class="form-control form-control-lg"  id="Thangthue">
                                                 <%
-                                                    for (int i = 0; i <= 12; i++) {
+                                                    for (int i = 8; i <= 22; i++) {
                                                         if (i == 0) {
                                                 %>
                                                 <option value="0">Trống</option>

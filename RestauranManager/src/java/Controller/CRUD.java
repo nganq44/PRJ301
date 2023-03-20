@@ -49,7 +49,7 @@ public class CRUD extends BaseAuthController {
             String manage = request.getParameter("manage");
             Account acc = (Account) request.getSession().getAttribute("Account");
             List<Apartment> apalist = (List<Apartment>) DAO.Home.getApartment();
-             Customers cus = (Customers)DAO.Home.getOneCustomersByID(acc.getIdKH());
+            Customers cus = (Customers)DAO.Home.getOneCustomersByID(acc.getIdKH());
             switch (manage) {
                 case "Apartment":
                     switch (type) {
@@ -63,7 +63,7 @@ public class CRUD extends BaseAuthController {
                             request.setAttribute("type", "edit");
                             request.setAttribute("id", id);
                             if (acc.getRoleId() == 1) {
-                                request.getRequestDispatcher("EditCH.jsp").forward(request, response);
+                                request.getRequestDispatcher("EditCH.jsp").forward(request, response);                                
                             } else {
                                 request.getRequestDispatcher("KHEditCH.jsp").forward(request, response);
                             }
@@ -181,8 +181,7 @@ public class CRUD extends BaseAuthController {
                         case "edit":
                             request.setAttribute("type", "edit");
                             request.setAttribute("id", id);
-                            request.setAttribute("idTT", request.getParameter("idTT"));
-                            
+                            request.setAttribute("idTT", request.getParameter("idTT"));                            
                             request.getRequestDispatcher("EditDV.jsp").forward(request, response);
                             break;
                         case "Cancel":
@@ -225,7 +224,7 @@ public class CRUD extends BaseAuthController {
                             request.setAttribute("type", "edit");
                             request.setAttribute("id", id);
                             request.setAttribute("idPhong", request.getParameter("idPhong"));
-                            request.getRequestDispatcher("EditHÐ.jsp").forward(request, response);
+                            request.getRequestDispatcher("EditHD.jsp").forward(request, response);
                             break;
                         case "Cancel":
                             response.sendRedirect("QLHoaDon.jsp");

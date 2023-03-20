@@ -3,6 +3,9 @@
     Created on : Feb 21, 2023, 9:47:14 AM
     Author     : Admin
 --%>
+
+<%@page import="model.Invoice"%>
+<%@page import="model.Service"%>
 <%@page import="model.Customers"%>
 <%@page import="model.Apartment"%>
 <%@page import="java.util.ArrayList"%>
@@ -42,7 +45,6 @@
                 margin: 0;
             }
         </style>
-
     </head>
 
     <body id="page-top">
@@ -94,7 +96,7 @@
                             <a class="collapse-item" href="QLDichVu.jsp">Menu</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Bàn:</h6>
-                            <a class="collapse-item" href="QLBan.jsp">Quản lý bàn</a>
+                            <a class="collapse-item" href=QLBan.jsp>Quản lý bàn</a>
                             <a class="collapse-item" href="QLHoaDon.jsp">Hóa đơn</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Khách Hàng:</h6>
@@ -162,171 +164,129 @@
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">QUẢN LÝ NHÀ HÀNG</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Quản Lý Thu Tiền</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <form action="CRUD" method="GET">
-                                        <input type="hidden" name="manage" value="Apartment">
+                                    <form action="CRUD" method="POST">
+                                        <input type="hidden" name="manage" value="TT">
                                         <%
                                             String type = "";
                                             try {
                                                 type = request.getAttribute("type").toString();
                                             } catch (Exception e) {
+                                                System.out.println(e);
                                                 type = "add";
                                             }
                                             if (type == "edit") {
-                                                ArrayList<Apartment> listApartmentByID = DAO.Home.getApartmentByID(Integer.parseInt(request.getAttribute("id").toString()));
-                                                for (Apartment dtoApartment : listApartmentByID) {
+                                                Invoice dtoTT = DAO.Home.getInvoiceByID(Integer.parseInt(request.getParameter("id").toString()));
+
+                                                int ThangThue = DAO.Home.getThangThueByID(dtoTT.getIdPhong());
                                         %>
                                         <h3 class="mb-5">Thay đổi thông tin</h3>
+                                        <h6 class="m-0 font-weight-bold text-primary">ID Hoá Đơn</h6>
                                         <div class="form-outline mb-4">
-                                            <h6 class="m-0 font-weight-bold text-primary">Mã bàn</h6>
-                                            <select name="idPhong" class="form-control form-control-lg" readonly>
-                                                <option value="<%=  dtoApartment.getIdPhong()%>"><%=  dtoApartment.getIdPhong()%></option>
-                                            </select>
+                                            <input name="idTT" type="text" id="typeEmailX-2" class="form-control form-control-lg" value="<%= dtoTT.getIdInvoice()%>" readonly/>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Người Đặt</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">ID Bàn</h6>
                                         <div class="form-outline mb-4">
-                                            <select name="idKH" class="form-control form-control-lg"  id="gender">
+                                            <select name="idPhong" class="form-control form-control-lg"  id="gender" onchange="myFunction(this.value)">
                                                 <%
-                                                    ArrayList<Customers> listCustomers = DAO.Home.getCustomers();
-                                                    for (Customers dtoCustomers : listCustomers) {
-                                                        if (dtoCustomers.getIdKH() == dtoApartment.getIdKH()) {
+                                                    ArrayList<Apartment> listApartment = DAO.Home.getApartment();
+                                                    for (Apartment dtoPT : listApartment) {
+                                                        if (dtoPT.getIdPhong() == Integer.parseInt(request.getParameter("idPhong"))) {
                                                 %>
-                                                <option value="<%= dtoCustomers.getIdKH()%>" selected><%= dtoCustomers.getTenKH()%></option>
+                                                <option value="<%= dtoPT.getIdPhong()%>.<%= dtoPT.getThangThue()%>" selected><%= dtoPT.getIdPhong()%></option>
                                                 <%
-                                                } else {
+                                                } else if (dtoPT.getTrangThai() == 1) {
+
                                                 %>
-                                                <option value="<%= dtoCustomers.getIdKH()%>"><%= dtoCustomers.getTenKH()%></option>
+                                                <option value="<%= dtoPT.getIdPhong()%>.<%= dtoPT.getThangThue()%>"><%= dtoPT.getIdPhong()%></option>
                                                 <%
                                                         }
                                                     }
-                                                    if (dtoApartment.getIdKH() >= 1) {
-                                                %>
-                                                <option value="0">Trống</option>
-                                                <%
-                                                } else {
-                                                %>
-                                                <option value="0" selected>Trống</option>
-                                                <%
-                                                    }
+
                                                 %>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giờ Đặt</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Giờ Thuê</h6>
                                         <div class="form-outline mb-4">
-                                            <select name="ThangThue" class="form-control form-control-lg"  id="Thangthue">
-                                                <%
-                                                    if (dtoApartment.getThangThue() == 0) {
-                                                %>
-                                                <option value="0" selected>Trống</option>
-                                                <%
-                                                } else {
-                                                %>
-                                                <option value="0">Trống</option>
-                                                <%
-                                                    }
-                                                    for (int i = 8; i <= 22; i++) {
-                                                        if (i == dtoApartment.getThangThue()) {
-                                                %>
-                                                <option value="<%= i%>" selected><%= i%></option>
-                                                <%
-                                                } else {
-                                                %>
-                                                <option value="<%= i%>"><%= i%></option>
-                                                <%
-                                                        }
-                                                    }
-                                                %>
-                                            </select>
+                                            <input name="ThangThue" type="number" id="ThangThue" class="form-control form-control-lg" value="<%= ThangThue%>" readonly/>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giá</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Tổng Tiền</h6>
                                         <div class="form-outline mb-4">
-                                            <input name="GiaThue" type="text" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Giá Thuê" value="<%= dtoApartment.getGiaThue()%>" required pattern="^[1-9]+[0-9]*$" title="Giá Tiền phải là số dương"/>
+                                            <input name="TongTien" type="number" id="TongTien" class="form-control form-control-lg" value="<%= dtoTT.getTongTien()%>" readonly/>
+                                        </div>
+                                        <h6 class="m-0 font-weight-bold text-primary">Số Món</h6>
+                                        <div class="form-outline mb-4">
+                                            <input name="SoDien" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số món" value="<%= dtoTT.getSoDien()%>" required pattern="^[1-9]\d*$" title="Số món ăn phải là số dương"/>
+                                        </div>
+                                        <h6 class="m-0 font-weight-bold text-primary">Số Người</h6>
+                                        <div class="form-outline mb-4">
+                                            <input name="SoNuoc" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số người" value="<%= dtoTT.getSoNuoc()%>" required pattern="^[1-9]\d*$" title="Số người phải là số dương"/>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Trạng Thái</h6>
                                         <div class="form-outline mb-4">
-                                            <select name="trangThai" class="form-control form-control-lg"  id="gender">
+                                            <select name="TrangThai" class="form-control form-control-lg"  id="gender">
                                                 <%
-                                                    if (dtoApartment.getTrangThai() == 1) {
+                                                    if (dtoTT.getTrangThai() == 1) {
                                                 %>
-                                                <option value="1" selected>Được Đặt</option>
-                                                <option value="2">Trống</option>
-                                                <option value="3">Đang dọn dẹp </option>
-                                                <%
-                                                } else if (dtoApartment.getTrangThai() == 2) {
-                                                %>
-                                                <option value="1">Được Đặt</option>
-                                                <option value="2" selected>Trống</option>
-                                                <option value="3">Đang dọn dẹp</option>
+                                                <option value="1" selected>Đã thanh toán</option>
+                                                <option value="2">Chưa Thanh Toán</option>
                                                 <%
                                                 } else {
                                                 %>
-                                                <option value="1">Được Đặt</option>
-                                                <option value="2">Trống</option>
-                                                <option value="3" selected>Đang dọn dẹp</option>
+                                                <option value="1">Đã thanh toán</option>
+                                                <option value="2" selected="">Chưa Thanh Toán</option>
                                                 <%
                                                     }
                                                 %>
                                             </select>
                                         </div>
-
-                                        <%
-                                            }
-                                        %>
                                         <button class="btn btn-primary btn-lg btn-block" type="submit" name="type" value="ApplyEdit">Thay đổi</button>
                                         <button class="btn btn-primary btn-lg btn-block" type="submit" name="type" value="Cancel">Huỷ</button>
                                         <%
                                         } else {
                                         %>
-                                        <h3 class="mb-5">Thêm bàn</h3>
-                                        <h6 class="m-0 font-weight-bold text-primary">Người Đặt</h6>
+                                        <h3 class="mb-5">Thêm Hóa Đơn</h3>
+                                        <h6 class="m-0 font-weight-bold text-primary">ID Bàn</h6>
                                         <div class="form-outline mb-4">
-                                            <select name="idKH" class="form-control form-control-lg"  id="gender">
-                                                <option value="0">Trống</option>
+                                            <select name="idPhong" class="form-control form-control-lg" id="gender" onchange="myFunction(this.value)">
                                                 <%
-                                                    ArrayList<Customers> listCustomers = DAO.Home.getCustomers();
-                                                    for (Customers dtoKH : listCustomers) {
+                                                    ArrayList<Apartment> listApartment = DAO.Home.getApartment();
+                                                    for (Apartment dtoPT : listApartment) {
+                                                        if (dtoPT.getTrangThai() == 1) {
                                                 %>
-                                                <option value="<%= dtoKH.getIdKH()%>"><%= dtoKH.getTenKH()%></option>
+                                                <option value="<%= dtoPT.getIdPhong()%>.<%= dtoPT.getThangThue()%>"><%= dtoPT.getIdPhong()%></option>
                                                 <%
+                                                        }
                                                     }
+
                                                 %>
                                             </select>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Giờ Đặt</h6>
                                         <div class="form-outline mb-4">
-                                            <select name="ThangThue" class="form-control form-control-lg"  id="Thangthue">
-                                                <%
-                                                    for (int i = 8; i <= 22; i++) {
-                                                        if (i == 0) {
-                                                %>
-                                                <option value="0">Trống</option>
-                                                <%
-                                                } else {
-                                                %>
-                                                <option value="<%= i%>"><%= i%></option>
-                                                <%
-                                                        }
-                                                    }
-                                                %>
-                                            </select>
+                                            <input name="ThangThue" type="text" id="ThangThue" class="form-control form-control-lg" readonly/>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giá</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Số Món</h6>
                                         <div class="form-outline mb-4">
-                                            <input name="GiaThue" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Giá Thuê" value="0" required pattern="^[1-9]\d*$" title="Giá Tiền phải là số dương"/>
+                                            <input name="SoDien" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số món" required pattern="^[0-9]\d*$" title="Số món ăn phải là số dương"/>
+                                        </div>
+                                        <h6 class="m-0 font-weight-bold text-primary">Số Người</h6>
+                                        <div class="form-outline mb-4">
+                                            <input name="SoNuoc" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số người" required pattern="^[0-9]\d*$" title="Số người phải là số dương"/>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Trạng Thái</h6>
                                         <div class="form-outline mb-4">
-                                            <select name="trangThai" class="form-control form-control-lg"  id="gender">
-                                                <option value="1">Được Đặt</option>
-                                                <option value="2">Trống</option>
-                                                <option value="3">Đang dọn dẹp</option>
+                                            <select name="TrangThai" class="form-control form-control-lg"  id="TrangThai">
+                                                <option value="1">Đã thanh toán</option>
+                                                <option value="2" selected>Chưa Thanh Toán</option>
                                             </select>
                                         </div>
-                                        <button class="btn btn-primary btn-lg btn-block" type="submit" name="type" value="add">Thêm</button>
-                                        <%
+
+                                        <button class="btn btn-primary btn-lg btn-block" type="submit"  name="type" value="add">Thêm</button>
+                                        <% 
                                             }
                                         %>
                                     </form>
@@ -382,6 +342,14 @@
         </div>
 
 
+        <script>
+            function myFunction(idPhong) {
+                let string = String(idPhong);
+                const arr = string.split(".");
+                let thangthue = arr[1];
+                document.getElementById("ThangThue").value = thangthue;
+            }
+        </script>
 
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
