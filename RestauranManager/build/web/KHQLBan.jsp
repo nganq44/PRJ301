@@ -1,14 +1,14 @@
 <%-- 
-    Document   : KHQLDichVu
-    Created on : Mar 10, 2023, 3:08:20 AM
+    Document   : KHQLBan
+    Created on : Feb 21, 2023, 9:47:14 AM
     Author     : Admin
 --%>
 
-<%@page import="model.Service"%>
 <%@page import="model.Customers"%>
 <%@page import="model.Apartment"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,11 +45,11 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLBanBan.jsp">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLBan.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">QUẢN LÝ NHÀ HÀNG</div>
+                    <div class="sidebar-brand-text mx-3">Restaurant Management</div>
                 </a>
 
                 <!-- Nav Item - Pages Collapse Menu -->
@@ -60,6 +60,43 @@
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
+                    <h5 class=" price position-relative text-uppercase mb-3"><span class="pr-3">Filter by price</span></h5>
+                    <style>
+                        .price{
+                            color: white
+                        }
+                    </style>
+                    <div class="price-size bg-light p-4 mb-30">
+                        <form method="post" action="searchprice">
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="radio" class="custom-control-input" checked value="0" name="price" id="price-all">
+                                <label class="custom-control-label" for="price-all">All Price</label>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="radio" class="custom-control-input" value="1" name="price" id="price-1">
+                                <label class="custom-control-label" for="price-1">500.000-1.000.000</label>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="radio" class="custom-control-input" value="2" name="price" id="price-2">
+                                <label class="custom-control-label" for="price-2">1.000.000-1.500.000</label>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="radio" class="custom-control-input" value="3" name="price" id="price-3">
+                                <label class="custom-control-label" for="price-3">1.500.000-2.000.000</label>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="radio" class="custom-control-input" value="4" name="price" id="price-4">
+                                <label class="custom-control-label" for="price-4">&gt;2.000.000</label>
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Filter">
+                        </form>
+
+                    </div>
+                    <style>
+                        .price-size{
+                            font-size: 12px;
+                        }
+                    </style>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                        aria-expanded="true" aria-controls="collapsePages">
                         <i class="fas fa-fw fa-folder"></i>
@@ -117,7 +154,6 @@
                             </li>
 
                         </ul>
-
                     </nav>
                     <!-- End of Topbar -->
 
@@ -127,41 +163,70 @@
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Quản Lý Dịch Vụ</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Restaurant Management</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>ID Dịch Vụ</th>
-                                                <th>ID Thu Tiền</th>
-                                                <th>Tên Dịch Vụ</th>
-                                                <th>Giá Dịch Vụ</th>
+                                                <th>ID Bàn</th>
+                                                <th>Khách Hàng</th>
+                                                <th>Giờ Hẹn</th>
+                                                <th>Giá </th>
+                                                <th>Trạng Thái</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <%
-                                            ArrayList<Service> listService = DAO.Home.getService();
-                                        %>
                                         <tbody>
-                                            <%
-                                                for (Service dtoDV : listService) {
-                                                    if (dtoDV.getTrangThai() == 1) {
-                                            %>
-                                            <tr>
-                                                <td><%= dtoDV.getIdDV()%></td>
-                                                <td><%= dtoDV.getIdInvoice()%></td>
-                                                <td><%= dtoDV.getTenDV()%></td>
-                                                <td><%= dtoDV.getGiaDV()%> </td>
-                                                <td>
+                                            <c:forEach items="${sessionScope.ApaList}" var='a'>
+                                                <tr>
+                                                    <c:if test="${a.getIdKH()==0||sessionScope.Account.getIdKH()==a.getIdKH()}">
+                                                        <td>
+                                                        ${a.getIdPhong()}
+                                                    </td>
+                                                    <td>
+                                                        <c:if test="${a.getIdKH()==0}">
+                                                            Trống
+                                                        </c:if>
+                                                        <c:if test="${sessionScope.Account.getIdKH()==a.getIdKH()}">
+                                                            ${sessionScope.cus.getTenKH()};
+                                                        </c:if>    
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <c:if test="${a.getThangThue()!=0}">
+                                                            ${a.getThangThue()}
+                                                        </c:if>
+                                                        <c:if test="${a.getThangThue()==0}">
+                                                            Trống
+                                                        </c:if>
+                                                    </td>
+                                                    <td>${String.format("%.0f", a.getGiaThue())}</td>
+                                                    <td>
+                                                        <c:if test="${a.getTrangThai()==1}">
+                                                            Được Đặt
+                                                        </c:if>
+                                                        <c:if test="${a.getTrangThai()==3}">
+                                                            Đang dọn dẹp
+                                                        </c:if>    
+                                                        <c:if test="${a.getTrangThai()==0}">
+                                                            Trống
+                                                        </c:if>     
+                                                    <td>
+                                                        <c:if test="${a.getTrangThai()!=3&&a.getTrangThai()!=1}">
+                                                            <a href="CRUD?id=${a.getIdPhong()}&type=edit&manage=Apartment" class="btn btn-info btn-circle">
+                                                            <i class="fas fa-pen"></i>
+                                                        </a>
+                                                        </c:if>    
+                                                        
+                                                    </td>
+                                                    </c:if>
                                                     
-                                                </td>
-                                            </tr>
-                                            <%
-                                                    }
-                                                }
-                                            %>
+                                                </tr>
+                                            </c:forEach>
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -216,16 +281,16 @@
         </div>
 
 
-
         <script>
             function confDel(id) {
-                if (confirm("Bạn Muốn Xóa Dịch Vụ Này ?") == true) {
-                    document.location.href = "CRUD?id=" + id + "&type=del&manage=DV";
+                if (confirm("Bạn Muốn Xóa Bàn Này ?") == true) {
+                    document.location.href = "CRUD?id=" + id + "&type=del&manage=Apartment";
                 } else {
 
                 }
             }
         </script>
+
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

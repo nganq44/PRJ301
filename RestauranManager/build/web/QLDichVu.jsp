@@ -1,7 +1,7 @@
 <%-- 
     Document   : Home
-    Created on : Feb 21, 2022, 9:47:14 AM
-    Author     : 84915
+    Created on : Feb 21, 2023, 9:47:14 AM
+    Author     : Admin
 --%>
 
 <%@page import="model.Service"%>
@@ -45,7 +45,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLCanHo.jsp">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLBan.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>

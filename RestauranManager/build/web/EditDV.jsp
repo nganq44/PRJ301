@@ -1,9 +1,8 @@
 <%-- 
     Document   : Home
-    Created on : Feb 21, 2022, 9:47:14 AM
-    Author     : 84915
+    Created on : Feb 21, 2023, 9:47:14 AM
+    Author     : Admin
 --%>
-
 <%@page import="model.Invoice"%>
 <%@page import="model.Service"%>
 <%@page import="model.Customers"%>
@@ -55,7 +54,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLCanHo.jsp">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLBan.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -74,7 +73,7 @@
                             <a class="collapse-item" href="EditKH.jsp">Khách Hàng</a>
                             <a class="collapse-item" href="EditDV.jsp">Dịch Vụ</a>
                             <a class="collapse-item" href="EditCH.jsp">Bàn</a>
-                            <a class="collapse-item" href="EditHÐ.jsp">Hoá Đơn</a>
+                            <a class="collapse-item" href="EditHĐ.jsp">Hoá Đơn</a>
                         </div>
                     </div>
                 </li>
@@ -94,8 +93,8 @@
                             <h6 class="collapse-header">Dịch Vụ:</h6>
                             <a class="collapse-item" href="QLDichVu.jsp">Menu</a>
                             <div class="collapse-divider"></div>
-                            <h6 class="collapse-header">Căn hộ:</h6>
-                            <a class="collapse-item" href=QLCanHo.jsp>Quản lý bàn</a>
+                            <h6 class="collapse-header">Bàn :</h6>
+                            <a class="collapse-item" href="QLBan.jsp">Quản lý bàn</a>
                             <a class="collapse-item" href="QLHoaDon.jsp">Hóa đơn</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Khách Hàng:</h6>
@@ -243,8 +242,8 @@
                                         <h6 class="m-0 font-weight-bold text-primary">Tên Dịch Vụ</h6>
                                         <div class="form-outline mb-4">
                                             <select name="name" class="form-control form-control-lg"  id="gender">
-                                                <option value="Điện">Điện</option>
-                                                <option value="Nước">Nước</option>
+                                                <option value="Khăn ướt">Khăn ướt</option>
+                                                <option value="Hộp nhựa">Hộp nhựa</option>
                                             </select>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Giá Dịch Vụ</h6>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : Home
-    Created on : Feb 21, 2022, 9:47:14 AM
-    Author     : 84915
+    Created on : Feb 21, 2023, 9:47:14 AM
+    Author     : Admin
 --%>
 
 <%@page import="model.Customers"%>
@@ -151,8 +151,8 @@
                                             <tr>
                                                 <th>ID Bàn</th>
                                                 <th>Khách Hàng</th>
-                                                <th>Tháng thuê</th>
-                                                <th>Giá Thuê</th>
+                                                <th>Giờ Hẹn</th>
+                                                <th>Giá </th>
                                                 <th>Trạng Thái</th>
                                                 <th></th>
                                             </tr>
@@ -184,7 +184,7 @@
                                                     <td>${String.format("%.0f", a.getGiaThue())}</td>
                                                     <td>
                                                         <c:if test="${a.getTrangThai()==1}">
-                                                            Được Thuê
+                                                            Được Đặt
                                                         </c:if>
                                                         <c:if test="${a.getTrangThai()==3}">
                                                             Đang sửa chữa
@@ -262,7 +262,7 @@
 
         <script>
             function confDel(id) {
-                if (confirm("Bạn Muốn Xóa Phòng Này ?") == true) {
+                if (confirm("Bạn Muốn Xóa Bàn Này ?") == true) {
                     document.location.href = "CRUD?id=" + id + "&type=del&manage=Apartment";
                 } else {
 

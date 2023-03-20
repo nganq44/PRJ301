@@ -1,9 +1,8 @@
 <%-- 
     Document   : Home
-    Created on : Feb 21, 2022, 9:47:14 AM
-    Author     : 84915
+    Created on : Feb 21, 2023, 9:47:14 AM
+    Author     : Admin
 --%>
-
 <%@page import="model.Customers"%>
 <%@page import="model.Apartment"%>
 <%@page import="java.util.ArrayList"%>
@@ -55,7 +54,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLCanHo.jsp">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLBan.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -74,7 +73,7 @@
                             <a class="collapse-item" href="EditKH.jsp">Khách Hàng</a>
                             <a class="collapse-item" href="EditDV.jsp">Dịch Vụ</a>
                             <a class="collapse-item" href="EditCH.jsp">Bàn</a>
-                            <a class="collapse-item" href="EditHÐ.jsp">Hoá Đơn</a>
+                            <a class="collapse-item" href="EditHĐ.jsp">Hoá Đơn</a>
                         </div>
                     </div>
                 </li>
@@ -95,7 +94,7 @@
                             <a class="collapse-item" href="QLDichVu.jsp">Menu</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Bàn:</h6>
-                            <a class="collapse-item" href=QLCanHo.jsp>Quản lý bàn</a>
+                            <a class="collapse-item" href="QLBan.jsp">Quản lý bàn</a>
                             <a class="collapse-item" href="QLHoaDon.jsp">Hóa đơn</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Khách Hàng:</h6>
@@ -187,7 +186,7 @@
                                                 <option value="<%=  dtoApartment.getIdPhong()%>"><%=  dtoApartment.getIdPhong()%></option>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Người thuê</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Người Đặt</h6>
                                         <div class="form-outline mb-4">
                                             <select name="idKH" class="form-control form-control-lg"  id="gender">
                                                 <%
@@ -215,7 +214,7 @@
                                                 %>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giờ thuê</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Giờ Đặt</h6>
                                         <div class="form-outline mb-4">
                                             <select name="ThangThue" class="form-control form-control-lg"  id="Thangthue">
                                                 <%
@@ -242,7 +241,7 @@
                                                 %>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giá thuê</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Giá</h6>
                                         <div class="form-outline mb-4">
                                             <input name="GiaThue" type="text" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Giá Thuê" value="<%= dtoApartment.getGiaThue()%>" required pattern="^[1-9]+[0-9]*$" title="Giá Tiền phải là số dương"/>
                                         </div>
@@ -252,19 +251,19 @@
                                                 <%
                                                     if (dtoApartment.getTrangThai() == 1) {
                                                 %>
-                                                <option value="1" selected>Được Thuê</option>
+                                                <option value="1" selected>Được Đặt</option>
                                                 <option value="2">Trống</option>
                                                 <option value="3">Đang dọn dẹp </option>
                                                 <%
                                                 } else if (dtoApartment.getTrangThai() == 2) {
                                                 %>
-                                                <option value="1">Được Thuê</option>
+                                                <option value="1">Được Đặt</option>
                                                 <option value="2" selected>Trống</option>
                                                 <option value="3">Đang dọn dẹp</option>
                                                 <%
                                                 } else {
                                                 %>
-                                                <option value="1">Được Thuê</option>
+                                                <option value="1">Được Đặt</option>
                                                 <option value="2">Trống</option>
                                                 <option value="3" selected>Đang dọn dẹp</option>
                                                 <%
@@ -282,7 +281,7 @@
                                         } else {
                                         %>
                                         <h3 class="mb-5">Thêm bàn</h3>
-                                        <h6 class="m-0 font-weight-bold text-primary">Người thuê</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Người Đặt</h6>
                                         <div class="form-outline mb-4">
                                             <select name="idKH" class="form-control form-control-lg"  id="gender">
                                                 <option value="0">Trống</option>
@@ -296,7 +295,7 @@
                                                 %>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giờ thuê</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Giờ Đặt</h6>
                                         <div class="form-outline mb-4">
                                             <select name="ThangThue" class="form-control form-control-lg"  id="Thangthue">
                                                 <%
@@ -314,14 +313,14 @@
                                                 %>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giá thuê</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Giá</h6>
                                         <div class="form-outline mb-4">
                                             <input name="GiaThue" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Giá Thuê" value="0" required pattern="^[1-9]\d*$" title="Giá Tiền phải là số dương"/>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Trạng Thái</h6>
                                         <div class="form-outline mb-4">
                                             <select name="trangThai" class="form-control form-control-lg"  id="gender">
-                                                <option value="1">Được Thuê</option>
+                                                <option value="1">Được Đặt</option>
                                                 <option value="2">Trống</option>
                                                 <option value="3">Đang dọn dẹp</option>
                                             </select>

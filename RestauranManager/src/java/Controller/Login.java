@@ -94,9 +94,9 @@ public class Login extends HttpServlet {
                 request.getSession().setAttribute("ApaList", apaList);
                 request.getSession().setAttribute("username", username);
                 if (acc.getRoleId() == 1) {
-                    response.sendRedirect("QLCanHo.jsp");
+                    response.sendRedirect("QLBan.jsp");
                 } else {
-                    response.sendRedirect("KHQLCanHo.jsp");
+                    response.sendRedirect("KHQLBan.jsp");
                 }
             } else {
                 request.getSession().setAttribute("username", null);
@@ -116,7 +116,7 @@ public class Login extends HttpServlet {
 //                response.sendRedirect("Login.jsp");
 //            } else {
 //                request.getSession().setAttribute("account", account);
-//                response.sendRedirect("QLCanHo.jsp");
+//                response.sendRedirect("QLBan.jsp");
 //            }
 //            processRequest(request, response);
 //        } catch (SQLException ex) {

@@ -1,7 +1,7 @@
 <%-- 
     Document   : KHQLHoaDon
     Created on : Mar 10, 2023, 3:08:28 AM
-    Author     : toden
+    Author     : Admin
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -47,7 +47,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLCanHo.jsp">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLBan.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -131,16 +131,16 @@
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Quản Lý Thu Tiền</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Quản Lý Thu Ngân</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>ID Thu Tiền</th>
+                                                <th>ID Hóa đơn</th>
                                                 <th>ID Bàn</th>
-                                                <th>Tháng Thuê</th>
+                                                <th>Giờ Thuê</th>
                                                 <th>Tổng Tiền</th>
                                                 <th>Số Món</th>
                                                 <th>Số Người</th>
@@ -218,7 +218,7 @@
 
         <script>
             function confDel(id) {
-                if (confirm("Bạn Muốn Xóa Hóa Đơn Thu Tiền Này ?") == true) {
+                if (confirm("Bạn Muốn Xóa Hóa Đơn Này ?") == true) {
                     document.location.href = "CRUD?id=" + id + "&type=del&manage=TT";
                 } else {
 

@@ -1,7 +1,7 @@
 <%-- 
     Document   : Home
-    Created on : Feb 21, 2022, 9:47:14 AM
-    Author     : 84915
+    Created on : Feb 21, 2023, 9:47:14 AM
+    Author     : Admin
 --%>
 
 <%@page import="model.Invoice"%>
@@ -56,7 +56,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLCanHo.jsp">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLBan.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -96,7 +96,7 @@
                             <a class="collapse-item" href="QLDichVu.jsp">Menu</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Bàn:</h6>
-                            <a class="collapse-item" href=QLCanHo.jsp>Quản lý bàn</a>
+                            <a class="collapse-item" href=QLBan.jsp>Quản lý bàn</a>
                             <a class="collapse-item" href="QLHoaDon.jsp">Hóa đơn</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Khách Hàng:</h6>
@@ -219,11 +219,11 @@
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Số Món</h6>
                                         <div class="form-outline mb-4">
-                                            <input name="SoDien" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số Điện" value="<%= dtoTT.getSoDien()%>" required pattern="^[1-9]\d*$" title="Số Điện phải là số dương"/>
+                                            <input name="SoDien" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số món" value="<%= dtoTT.getSoDien()%>" required pattern="^[1-9]\d*$" title="Số món ăn phải là số dương"/>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Số Người</h6>
                                         <div class="form-outline mb-4">
-                                            <input name="SoNuoc" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số Nước" value="<%= dtoTT.getSoNuoc()%>" required pattern="^[1-9]\d*$" title="Số Nước phải là số dương"/>
+                                            <input name="SoNuoc" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số người" value="<%= dtoTT.getSoNuoc()%>" required pattern="^[1-9]\d*$" title="Số người phải là số dương"/>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Trạng Thái</h6>
                                         <div class="form-outline mb-4">
@@ -265,17 +265,17 @@
                                                 %>
                                             </select>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Giờ Thuê</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Giờ Đặt</h6>
                                         <div class="form-outline mb-4">
                                             <input name="ThangThue" type="text" id="ThangThue" class="form-control form-control-lg" readonly/>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Số Món</h6>
                                         <div class="form-outline mb-4">
-                                            <input name="SoDien" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số Điện" required pattern="^[0-9]\d*$" title="Số Điện phải là số dương"/>
+                                            <input name="SoDien" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số món" required pattern="^[0-9]\d*$" title="Số món ăn phải là số dương"/>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Số Người</h6>
                                         <div class="form-outline mb-4">
-                                            <input name="SoNuoc" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số Nước" required pattern="^[0-9]\d*$" title="Số Nước phải là số dương"/>
+                                            <input name="SoNuoc" type="number" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số người" required pattern="^[0-9]\d*$" title="Số người phải là số dương"/>
                                         </div>
                                         <h6 class="m-0 font-weight-bold text-primary">Trạng Thái</h6>
                                         <div class="form-outline mb-4">

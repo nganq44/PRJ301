@@ -10,7 +10,7 @@
         <a class="collapse-item" href="QLDichVu.jsp">Menu</a>
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Bàn:</h6>
-        <a class="collapse-item" href=QLCanHo.jsp>Quản lý bàn</a>
+        <a class="collapse-item" href=QLBan.jsp>Quản lý bàn</a>
         <a class="collapse-item" href="QLHoaDon.jsp">Hóa Đơn</a>
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Khách Hàng:</h6>

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : KHQLCanHo
-    Created on : Mar 10, 2023, 3:01:42 AM
-    Author     : toden
+    Document   : Home
+    Created on : Feb 21, 2023, 9:47:14 AM
+    Author     : Admin
 --%>
 
 <%@page import="model.Customers"%>
@@ -53,56 +53,35 @@
                 </a>
 
                 <!-- Nav Item - Pages Collapse Menu -->
-                
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                       aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Thêm Dữ Liệu</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="EditKH.jsp">Khách Hàng</a>
+                            <a class="collapse-item" href="EditDV.jsp">Dịch Vụ</a>
+                            <a class="collapse-item" href="EditCH.jsp">Bàn</a>
+                            <a class="collapse-item" href="EditHÐ.jsp">Hoá Đơn</a>
+                        </div>
+                    </div>
+                </li>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <h5 class=" price position-relative text-uppercase mb-3"><span class="pr-3">Filter by price</span></h5>
-                    <style>
-                        .price{
-                            color: white
-                        }
-                    </style>
-                    <div class="price-size bg-light p-4 mb-30">
-                        <form method="post" action="searchprice">
-                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="radio" class="custom-control-input" checked value="0" name="price" id="price-all">
-                                <label class="custom-control-label" for="price-all">All Price</label>
-                            </div>
-                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="radio" class="custom-control-input" value="1" name="price" id="price-1">
-                                <label class="custom-control-label" for="price-1">500.000-1.000.000</label>
-                            </div>
-                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="radio" class="custom-control-input" value="2" name="price" id="price-2">
-                                <label class="custom-control-label" for="price-2">1.000.000-1.500.000</label>
-                            </div>
-                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="radio" class="custom-control-input" value="3" name="price" id="price-3">
-                                <label class="custom-control-label" for="price-3">1.500.000-2.000.000</label>
-                            </div>
-                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="radio" class="custom-control-input" value="4" name="price" id="price-4">
-                                <label class="custom-control-label" for="price-4">&gt;2.000.000</label>
-                            </div>
-                            <input type="submit" class="btn btn-primary" value="Filter">
-                        </form>
-
-                    </div>
-                    <style>
-                        .price-size{
-                            font-size: 12px;
-                        }
-                    </style>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                        aria-expanded="true" aria-controls="collapsePages">
                         <i class="fas fa-fw fa-folder"></i>
                         <span>Quản Lý</span>
                     </a>
-                    <%@include file="Component/dropdown.jsp" %>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <%@include file="Component/dropdown2.jsp" %>
+                    </div>
                 </li>
 
                 <!-- Divider -->
@@ -172,8 +151,8 @@
                                             <tr>
                                                 <th>ID Bàn</th>
                                                 <th>Khách Hàng</th>
-                                                <th>Giờ thuê</th>
-                                                <th>Giá Thuê</th>
+                                                <th>Giờ Hẹn</th>
+                                                <th>Giá </th>
                                                 <th>Trạng Thái</th>
                                                 <th></th>
                                             </tr>
@@ -181,18 +160,18 @@
                                         <tbody>
                                             <c:forEach items="${sessionScope.ApaList}" var='a'>
                                                 <tr>
-                                                    <c:if test="${a.getIdKH()==0||sessionScope.Account.getIdKH()==a.getIdKH()}">
+                                                   
                                                         <td>
                                                         ${a.getIdPhong()}
                                                     </td>
                                                     <td>
-                                                        <c:if test="${a.getIdKH()==0}">
+                                                        <c:if test="${a.getCustomerName()!=null}">
+                                                            ${a.getCustomerName()}
+                                                        </c:if>
+                                                        <c:if test="${a.getCustomerName()==null}">
                                                             Trống
                                                         </c:if>
-                                                        <c:if test="${sessionScope.Account.getIdKH()==a.getIdKH()}">
-                                                            ${sessionScope.cus.getTenKH()};
-                                                        </c:if>    
-                                                        
+                                                            
                                                     </td>
                                                     <td>
                                                         <c:if test="${a.getThangThue()!=0}">
@@ -205,23 +184,23 @@
                                                     <td>${String.format("%.0f", a.getGiaThue())}</td>
                                                     <td>
                                                         <c:if test="${a.getTrangThai()==1}">
-                                                            Được Thuê
+                                                            Được Đặt
                                                         </c:if>
                                                         <c:if test="${a.getTrangThai()==3}">
-                                                            Đang dọn dẹp
+                                                            Đang sửa chữa
                                                         </c:if>    
                                                         <c:if test="${a.getTrangThai()==0}">
                                                             Trống
                                                         </c:if>     
                                                     <td>
-                                                        <c:if test="${a.getTrangThai()!=3&&a.getTrangThai()!=1}">
-                                                            <a href="CRUD?id=${a.getIdPhong()}&type=edit&manage=Apartment" class="btn btn-info btn-circle">
+                                                        <a href="CRUD?id=${a.getIdPhong()}&type=del&manage=Apartment" onclick="confDel(${a.getIdPhong()})" class="btn btn-danger btn-circle" style="margin-left: 24%;">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                        <a href="CRUD?id=${a.getIdPhong()}&type=edit&manage=Apartment" class="btn btn-info btn-circle">
                                                             <i class="fas fa-pen"></i>
                                                         </a>
-                                                        </c:if>    
-                                                        
                                                     </td>
-                                                    </c:if>
+                                                    
                                                     
                                                 </tr>
                                             </c:forEach>

@@ -57,8 +57,8 @@ public class SearchPriceServlet extends HttpServlet {
 
         }
         session.setAttribute("ApaList", list);
-        request.getRequestDispatcher("KHQLCanHo.jsp").forward(request, response);
-//        response.sendRedirect("KHQLCanHo.jsp");
+        request.getRequestDispatcher("KHQLBan.jsp").forward(request, response);
+//        response.sendRedirect("KHQLBan.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

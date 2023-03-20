@@ -1,7 +1,7 @@
 <%-- 
     Document   : Home
-    Created on : Feb 21, 2022, 9:47:14 AM
-    Author     : 84915
+    Created on : Feb 21, 2023, 9:47:14 AM
+    Author     : Admin
 --%>
 
 <%@page import="model.Customers"%>
@@ -54,7 +54,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLCanHo.jsp">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="QLBan.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -94,7 +94,7 @@
                             <a class="collapse-item" href="QLDichVu.jsp">Menu</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Bàn:</h6>
-                            <a class="collapse-item" href=QLCanHo.jsp>Quản lý bàn</a>
+                            <a class="collapse-item" href=QLBan.jsp>Quản lý bàn</a>
                             <a class="collapse-item" href="QLHoaDon.jsp">Hóa đơn</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Khách Hàng:</h6>
@@ -243,7 +243,7 @@
                                         <div class="form-outline mb-4">
                                             <input name="phone" type="text" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Số điện thoại" required pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" title="Số điện thoại không tồn tại"/>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary">Chứng minh nhân dân</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Căn cước công dân</h6>
                                         <div class="form-outline mb-4">
                                             <input name="cmnd" type="text" id="typeEmailX-2" class="form-control form-control-lg" placeholder="CMND" required pattern="([0-9][0-9]+[1-9])+([0-9]{9})" title="Chứng minh nhân dân không hợp lệ"/>
                                         </div>

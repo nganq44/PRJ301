@@ -57,7 +57,7 @@ public class CRUD extends BaseAuthController {
                             DAO.Home.DeleteSQL("UPDATE Apartment SET trangThai = 0, idKH = NULL WHERE idPhong=" + id);
                             apalist = (List<Apartment>) DAO.Home.getApartment();
                             request.getSession().setAttribute("ApaList", apalist);
-                            response.sendRedirect("QLCanHo.jsp");
+                            response.sendRedirect("QLBan.jsp");
                             break;
                         case "edit":
                             request.setAttribute("type", "edit");
@@ -70,9 +70,9 @@ public class CRUD extends BaseAuthController {
                             break;
                         case "Cancel":
                             if (acc.getRoleId() == 1) {
-                                response.sendRedirect("QLCanHo.jsp");
+                                response.sendRedirect("QLBan.jsp");
                             } else {
-                                response.sendRedirect("KHQLCanHo.jsp");
+                                response.sendRedirect("KHQLBan.jsp");
                             }
                             break;
                         case "ApplyEdit":
@@ -92,9 +92,9 @@ public class CRUD extends BaseAuthController {
                             apalist = (List<Apartment>) DAO.Home.getApartment();
                             request.getSession().setAttribute("ApaList", apalist);
                             if(acc.getRoleId()==2){
-                                request.getRequestDispatcher("KHQLCanHo.jsp").forward(request, response);
+                                request.getRequestDispatcher("KHQLBan.jsp").forward(request, response);
                             }else{
-                                request.getRequestDispatcher("QLCanHo.jsp").forward(request, response);
+                                request.getRequestDispatcher("QLBan.jsp").forward(request, response);
                             }
                             
                         } catch (Exception e) {
@@ -109,7 +109,7 @@ public class CRUD extends BaseAuthController {
                             dto.setGiaThue(Float.parseFloat(request.getParameter("GiaThue")));
                             dto.setTrangThai(Integer.parseInt(request.getParameter("trangThai")));
                             DAO.Home.InsertApartment(dto);
-                            request.getRequestDispatcher("QLCanHo.jsp").forward(request, response);
+                            request.getRequestDispatcher("QLBan.jsp").forward(request, response);
                         } catch (Exception e) {
                             System.out.println(e);
                         }
