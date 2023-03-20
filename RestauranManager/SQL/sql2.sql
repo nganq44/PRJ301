@@ -1,4 +1,4 @@
-USE [RestaurantManager]
+USE [RestaurantManagerAssgn]
 GO
 /****** Object:  Table [dbo].[Account]    Script Date: 3/18/2023 2:33:11 AM ******/
 SET ANSI_NULLS ON
